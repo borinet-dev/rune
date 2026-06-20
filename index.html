@@ -1,21 +1,158 @@
 <!DOCTYPE html>
-
 <html lang="ko">
+
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<link href="https://borinet-dev.github.io/css/favicon.ico" rel="icon" type="image/x-icon"/>
-<title>룬 옵션 안내</title>
-<style>
-@font-face{font-family:'Borinet';src:url('https://borinet-dev.github.io/css/Fonts/borinet.ttf') format('truetype');font-weight:normal;font-style:normal;}
-html,body{margin:0;padding:0;background:#2A2A2A;}
-body{padding:28px 10px;}
-a{color:inherit;}
-img{max-width:100%;}
-@media (max-width:560px){body{padding:0}.liberty-root{border-radius:0!important;padding:14px 10px 22px!important}}
-</style>
+	<script>
+		(function() {
+			// 사용자 에이전트 정보를 가져옵니다.
+			var userAgent = navigator.userAgent.toLowerCase();
+
+			// 브라우저가 크롬인지 확인합니다.
+			var isChrome = /chrome/.test(userAgent) && !/edge|edg|opr/.test(userAgent);
+
+			// 크롬이 아니라면 팝업 창을 띄웁니다.
+			if (!isChrome) {
+				alert('이 페이지는 크롬에 최적화되어 있습니다. 크롬 브라우저에서 접속해 주세요.');
+			}
+		})();
+	</script>
+	<style>
+		.count-color { color: red; text-shadow: 2px 2px 2px black; }
+		.info-color { color: yellow; text-shadow: 2px 2px 2px black; }
+		.info-color2 { color: red; text-shadow: 1px 1px 1px black; }
+		.info-color3 { color: black; text-shadow: 1px 1px 1px gray; }
+		.s1 { text-shadow: 4px 4px 5px black; }
+		.s2 { text-shadow: 2px 2px 2px black; }
+		.s3 { text-shadow: 1px 1px 1px black; }
+		.bg-2a2a2a { background-color: #2a2a2a !important; }
+		.bg-2a2a2a .nav-link { color: white !important; transition: color 0.3s ease-in-out; }
+		.bg-2a2a2a .nav-link:hover { color: #90ee90 !important; }
+		.border-bottom { color: red !important; text-decoration: none; transition: color 0.3s ease-in-out; }
+		.border-bottom:hover { color: darkred !important; }
+		body { background-color: #2a2a2a; color: white; font-family: sans-serif; line-height: 1.6; }
+		table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+		th, td { border: 1px solid white; padding: 8px; }
+		th { background-color: #444; }
+		h3 { margin-top: 30px; color: #ffd700; }
+	</style>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<meta content="" name="keywords">
+	<meta content="" name="description">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">  
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="https://borinet-dev.github.io/css/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="https://borinet-dev.github.io/css/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="https://borinet-dev.github.io/css/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="https://borinet-dev.github.io/css/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+	<link href="https://borinet-dev.github.io/css/css/board.css" rel="stylesheet">
+	<link href="https://borinet-dev.github.io/css/css/style2.css" rel="stylesheet">
+	<link href="https://borinet-dev.github.io/css/css/style3.css" rel="stylesheet">
 </head>
-<body>
+
+<body style="background-color: #2a2a2a;">
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+    </div>
+    <!-- Spinner End -->
+
+    <!-- Navbar Start -->
+		<!-- Header (외부 include) -->
+		<div id="header-placeholder"></div>
+
+		<script>
+		(function(){
+		  const url = "https://borinet-dev.github.io/head/header.html?ver=" + Date.now();
+		  fetch(url).then(r=>r.text()).then(html=>{
+			const holder = document.getElementById('header-placeholder');
+			// wrapper <div>를 nav로 교체 → sticky-top 정상 동작
+			holder.outerHTML = html;
+
+			// favicon/제목 반영
+			const temp = document.createElement("div");
+			temp.innerHTML = html;
+
+			const fav = temp.querySelector('link[rel="navi-favicon"]');
+			if (fav){
+			  let headIcon = document.head.querySelector("link[rel~='icon']");
+			  if(!headIcon){
+				headIcon=document.createElement('link');
+				headIcon.rel='icon';
+				document.head.appendChild(headIcon);
+			  }
+			  headIcon.href = fav.getAttribute('href');
+			}
+
+			const titleMeta = temp.querySelector('meta[name="web-title"]');
+			if (titleMeta) document.title = titleMeta.content;
+		  }).catch(console.error);
+		})();
+		</script>
+	<!-- Navbar End -->
+
+
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container text-center py-5">
+            <h1 class="display-3 text-white mb-4 animated slideInDown s2">컬렉션 시스템</h1>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+
+    <!-- Start -->
+<div id="viewer" class="white viewer_style rd_nav_blk">
+
 <div class="liberty-root" style="max-width:900px;margin:0 auto;padding:20px 16px 28px 16px;box-sizing:border-box;font-family:'Borinet','Malgun Gothic','Apple SD Gothic Neo',sans-serif;background:#120F1D;color:#E8EDF5;border:1px solid #5D3C86;border-radius:18px;box-shadow:0 18px 46px rgba(0,0,0,.36);"><div style="position:relative;overflow:hidden;background:linear-gradient(135deg,#241936 0%,#15101F 58%,#2A1E3F 100%);border:1px solid #5D3C86;border-radius:18px;padding:20px 18px;margin:0 0 18px 0;box-shadow:0 14px 32px rgba(0,0,0,.28);box-sizing:border-box;"><div style="position:absolute;right:-42px;top:-48px;width:150px;height:150px;border-radius:50%;background:rgba(220,194,127,.12);filter:blur(1px);"></div><div style="position:relative;z-index:1;"><div style="font-size:24px;line-height:1.25;font-weight:900;color:#FFD966;letter-spacing:-0.5px;text-shadow:0 2px 12px rgba(0,0,0,.35);">룬 옵션 안내</div><div style="font-size:14px;line-height:1.7;color:#E8EDF5;margin-top:8px;">대장장이를 통하여 <span style="color:#FFD966;font-weight:800;">무기에 장착</span>할 수 있는 룬 옵션 안내입니다.</div><div style="margin-top:10px;"><span style="display:inline-block;margin:4px 5px 0 0;padding:5px 10px;border-radius:999px;border:1px solid #8460B0;background:#1A1427;color:#FFD966;font-size:12px;font-weight:800;line-height:1.2;">무기 장착</span><span style="display:inline-block;margin:4px 5px 0 0;padding:5px 10px;border-radius:999px;border:1px solid #8460B0;background:#1A1427;color:#FFD966;font-size:12px;font-weight:800;line-height:1.2;">대장장이 이용</span><span style="display:inline-block;margin:4px 5px 0 0;padding:5px 10px;border-radius:999px;border:1px solid #8460B0;background:#1A1427;color:#FFD966;font-size:12px;font-weight:800;line-height:1.2;">룬별 고유 옵션</span></div></div></div><div style="margin:18px 0 0 0;padding:0;"><div style="display:flex;align-items:center;gap:8px;margin:0 0 10px 0;"><div style="width:5px;height:22px;background:#DCC27F;border-radius:8px;box-shadow:0 0 10px rgba(220,194,127,.35);"></div><div style="font-size:19px;font-weight:900;color:#FFD966;letter-spacing:-0.2px;">장착 안내</div></div><div style="background:#271F36;border:1px solid #FFD966;border-radius:14px;padding:14px 16px;margin:12px 0;box-sizing:border-box;"><div style="display:flex;gap:9px;align-items:flex-start;margin:7px 0;"><div style="min-width:22px;color:#DCC27F;font-weight:900;text-align:right;">•</div><div style="flex:1;font-size:15px;line-height:1.65;color:#E8EDF5;">룬은 <span style="color:#FFD966;font-weight:800;">대장장이</span>를 통해 무기에 장착할 수 있습니다.</div></div><div style="display:flex;gap:9px;align-items:flex-start;margin:7px 0;"><div style="min-width:22px;color:#DCC27F;font-weight:900;text-align:right;">•</div><div style="flex:1;font-size:15px;line-height:1.65;color:#E8EDF5;">각 룬은 서로 다른 전투 보조 옵션을 제공합니다.</div></div><div style="display:flex;gap:9px;align-items:flex-start;margin:7px 0;"><div style="min-width:22px;color:#DCC27F;font-weight:900;text-align:right;">•</div><div style="flex:1;font-size:15px;line-height:1.65;color:#E8EDF5;">캐릭터 운용 방식에 맞는 룬을 선택하여 장착해 주세요.</div></div></div></div><div style="margin:18px 0 0 0;padding:0;"><div style="display:flex;align-items:center;gap:8px;margin:0 0 10px 0;"><div style="width:5px;height:22px;background:#DCC27F;border-radius:8px;box-shadow:0 0 10px rgba(220,194,127,.35);"></div><div style="font-size:19px;font-weight:900;color:#FFD966;letter-spacing:-0.2px;">룬별 옵션</div></div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:12px 0;"><div style="background:#201B2D;border:1px solid #5D3C86;border-radius:14px;padding:12px;box-sizing:border-box;"><div style="font-size:18px;font-weight:900;color:#FFD966;margin:0 0 10px 0;text-align:center;">에오로의 룬</div><a href="https://borinet-dev.github.io/rune/Aeore.jpg" style="display:block;text-decoration:none;" target="_blank"><img alt="에오로의 룬" src="https://borinet-dev.github.io/rune/Aeore.jpg" style="display:block;margin:0 auto 10px auto;border-radius:12px;border:1px solid rgba(93,60,134,.75);box-sizing:border-box;background:#15101F;max-width:100%;height:auto;"/></a><div style="display:flex;gap:9px;align-items:flex-start;margin:7px 0;"><div style="min-width:22px;color:#DCC27F;font-weight:900;text-align:right;">•</div><div style="flex:1;font-size:15px;line-height:1.65;color:#E8EDF5;"><span style="color:#DCC27F;font-weight:900;">마법 크리티컬 확률 +375</span></div></div><div style="display:flex;gap:9px;align-items:flex-start;margin:7px 0;"><div style="min-width:22px;color:#DCC27F;font-weight:900;text-align:right;">•</div><div style="flex:1;font-size:15px;line-height:1.65;color:#E8EDF5;"><span style="color:#DCC27F;font-weight:900;">힐량 증가 +62.1</span></div></div></div><div style="background:#201B2D;border:1px solid #5D3C86;border-radius:14px;padding:12px;box-sizing:border-box;"><div style="font-size:18px;font-weight:900;color:#FFD966;margin:0 0 10px 0;text-align:center;">페오의 룬</div><a href="https://borinet-dev.github.io/rune/Feoh.jpg" style="display:block;text-decoration:none;" target="_blank"><img alt="페오의 룬" src="https://borinet-dev.github.io/rune/Feoh.jpg" style="display:block;margin:0 auto 10px auto;border-radius:12px;border:1px solid rgba(93,60,134,.75);box-sizing:border-box;background:#15101F;max-width:100%;height:auto;"/></a><div style="display:flex;gap:9px;align-items:flex-start;margin:7px 0;"><div style="min-width:22px;color:#DCC27F;font-weight:900;text-align:right;">•</div><div style="flex:1;font-size:15px;line-height:1.65;color:#E8EDF5;"><span style="color:#DCC27F;font-weight:900;">마법력 +139.41, 소모 MP 증가 +15%</span></div></div><div style="display:flex;gap:9px;align-items:flex-start;margin:7px 0;"><div style="min-width:22px;color:#DCC27F;font-weight:900;text-align:right;">•</div><div style="flex:1;font-size:15px;line-height:1.65;color:#E8EDF5;"><span style="color:#DCC27F;font-weight:900;">마법력 +104</span></div></div></div><div style="background:#201B2D;border:1px solid #5D3C86;border-radius:14px;padding:12px;box-sizing:border-box;"><div style="font-size:18px;font-weight:900;color:#FFD966;margin:0 0 10px 0;text-align:center;">이스의 룬</div><a href="https://borinet-dev.github.io/rune/Iss.jpg" style="display:block;text-decoration:none;" target="_blank"><img alt="이스의 룬" src="https://borinet-dev.github.io/rune/Iss.jpg" style="display:block;margin:0 auto 10px auto;border-radius:12px;border:1px solid rgba(93,60,134,.75);box-sizing:border-box;background:#15101F;max-width:100%;height:auto;"/></a><div style="display:flex;gap:9px;align-items:flex-start;margin:7px 0;"><div style="min-width:22px;color:#DCC27F;font-weight:900;text-align:right;">•</div><div style="flex:1;font-size:15px;line-height:1.65;color:#E8EDF5;"><span style="color:#DCC27F;font-weight:900;">MP 회복 보너스 +20.64%</span></div></div><div style="display:flex;gap:9px;align-items:flex-start;margin:7px 0;"><div style="min-width:22px;color:#DCC27F;font-weight:900;text-align:right;">•</div><div style="flex:1;font-size:15px;line-height:1.65;color:#E8EDF5;"><span style="color:#DCC27F;font-weight:900;">최대 MP +17.1</span></div></div></div><div style="background:#201B2D;border:1px solid #5D3C86;border-radius:14px;padding:12px;box-sizing:border-box;"><div style="font-size:18px;font-weight:900;color:#FFD966;margin:0 0 10px 0;text-align:center;">오셀의 룬</div><a href="https://borinet-dev.github.io/rune/Othell.jpg" style="display:block;text-decoration:none;" target="_blank"><img alt="오셀의 룬" src="https://borinet-dev.github.io/rune/Othell.jpg" style="display:block;margin:0 auto 10px auto;border-radius:12px;border:1px solid rgba(93,60,134,.75);box-sizing:border-box;background:#15101F;max-width:100%;height:auto;"/></a><div style="display:flex;gap:9px;align-items:flex-start;margin:7px 0;"><div style="min-width:22px;color:#DCC27F;font-weight:900;text-align:right;">•</div><div style="flex:1;font-size:15px;line-height:1.65;color:#E8EDF5;"><span style="color:#DCC27F;font-weight:900;">크리티컬 확률 +375</span></div></div><div style="display:flex;gap:9px;align-items:flex-start;margin:7px 0;"><div style="min-width:22px;color:#DCC27F;font-weight:900;text-align:right;">•</div><div style="flex:1;font-size:15px;line-height:1.65;color:#E8EDF5;"><span style="color:#DCC27F;font-weight:900;">크리티컬 데미지 +285</span></div></div></div><div style="background:#201B2D;border:1px solid #5D3C86;border-radius:14px;padding:12px;box-sizing:border-box;"><div style="font-size:18px;font-weight:900;color:#FFD966;margin:0 0 10px 0;text-align:center;">시겔의 룬</div><a href="https://borinet-dev.github.io/rune/Sigel.jpg" style="display:block;text-decoration:none;" target="_blank"><img alt="시겔의 룬" src="https://borinet-dev.github.io/rune/Sigel.jpg" style="display:block;margin:0 auto 10px auto;border-radius:12px;border:1px solid rgba(93,60,134,.75);box-sizing:border-box;background:#15101F;max-width:100%;height:auto;"/></a><div style="display:flex;gap:9px;align-items:flex-start;margin:7px 0;"><div style="min-width:22px;color:#DCC27F;font-weight:900;text-align:right;">•</div><div style="flex:1;font-size:15px;line-height:1.65;color:#E8EDF5;"><span style="color:#DCC27F;font-weight:900;">방어력 +112.7</span></div></div><div style="display:flex;gap:9px;align-items:flex-start;margin:7px 0;"><div style="min-width:22px;color:#DCC27F;font-weight:900;text-align:right;">•</div><div style="flex:1;font-size:15px;line-height:1.65;color:#E8EDF5;"><span style="color:#DCC27F;font-weight:900;">최대 HP +418</span></div></div></div><div style="background:#201B2D;border:1px solid #5D3C86;border-radius:14px;padding:12px;box-sizing:border-box;"><div style="font-size:18px;font-weight:900;color:#FFD966;margin:0 0 10px 0;text-align:center;">티르의 룬</div><a href="https://borinet-dev.github.io/rune/Tyrr.jpg" style="display:block;text-decoration:none;" target="_blank"><img alt="티르의 룬" src="https://borinet-dev.github.io/rune/Tyrr.jpg" style="display:block;margin:0 auto 10px auto;border-radius:12px;border:1px solid rgba(93,60,134,.75);box-sizing:border-box;background:#15101F;max-width:100%;height:auto;"/></a><div style="display:flex;gap:9px;align-items:flex-start;margin:7px 0;"><div style="min-width:22px;color:#DCC27F;font-weight:900;text-align:right;">•</div><div style="flex:1;font-size:15px;line-height:1.65;color:#E8EDF5;"><span style="color:#DCC27F;font-weight:900;">공격력 +36.5</span></div></div><div style="display:flex;gap:9px;align-items:flex-start;margin:7px 0;"><div style="min-width:22px;color:#DCC27F;font-weight:900;text-align:right;">•</div><div style="flex:1;font-size:15px;line-height:1.65;color:#E8EDF5;"><span style="color:#DCC27F;font-weight:900;">공격속도 +5%</span></div></div></div><div style="background:#201B2D;border:1px solid #5D3C86;border-radius:14px;padding:12px;box-sizing:border-box;"><div style="font-size:18px;font-weight:900;color:#FFD966;margin:0 0 10px 0;text-align:center;">윈의 룬</div><a href="https://borinet-dev.github.io/rune/Wynn.jpg" style="display:block;text-decoration:none;" target="_blank"><img alt="윈의 룬" src="https://borinet-dev.github.io/rune/Wynn.jpg" style="display:block;margin:0 auto 10px auto;border-radius:12px;border:1px solid rgba(93,60,134,.75);box-sizing:border-box;background:#15101F;max-width:100%;height:auto;"/></a><div style="display:flex;gap:9px;align-items:flex-start;margin:7px 0;"><div style="min-width:22px;color:#DCC27F;font-weight:900;text-align:right;">•</div><div style="flex:1;font-size:15px;line-height:1.65;color:#E8EDF5;"><span style="color:#DCC27F;font-weight:900;">마법속도 +6.63%</span></div></div><div style="display:flex;gap:9px;align-items:flex-start;margin:7px 0;"><div style="min-width:22px;color:#DCC27F;font-weight:900;text-align:right;">•</div><div style="flex:1;font-size:15px;line-height:1.65;color:#E8EDF5;"><span style="color:#DCC27F;font-weight:900;">마법 크리티컬 데미지 +284</span></div></div></div><div style="background:#201B2D;border:1px solid #5D3C86;border-radius:14px;padding:12px;box-sizing:border-box;"><div style="font-size:18px;font-weight:900;color:#FFD966;margin:0 0 10px 0;text-align:center;">율의 룬</div><a href="https://borinet-dev.github.io/rune/Yul.jpg" style="display:block;text-decoration:none;" target="_blank"><img alt="율의 룬" src="https://borinet-dev.github.io/rune/Yul.jpg" style="display:block;margin:0 auto 10px auto;border-radius:12px;border:1px solid rgba(93,60,134,.75);box-sizing:border-box;background:#15101F;max-width:100%;height:auto;"/></a><div style="display:flex;gap:9px;align-items:flex-start;margin:7px 0;"><div style="min-width:22px;color:#DCC27F;font-weight:900;text-align:right;">•</div><div style="flex:1;font-size:15px;line-height:1.65;color:#E8EDF5;"><span style="color:#DCC27F;font-weight:900;">이동속도 +10</span></div></div><div style="display:flex;gap:9px;align-items:flex-start;margin:7px 0;"><div style="min-width:22px;color:#DCC27F;font-weight:900;text-align:right;">•</div><div style="flex:1;font-size:15px;line-height:1.65;color:#E8EDF5;"><span style="color:#DCC27F;font-weight:900;">명중 +4.52</span></div></div></div></div></div><div style="margin:18px 0 0 0;padding:0;"><div style="display:flex;align-items:center;gap:8px;margin:0 0 10px 0;"><div style="width:5px;height:22px;background:#DCC27F;border-radius:8px;box-shadow:0 0 10px rgba(220,194,127,.35);"></div><div style="font-size:19px;font-weight:900;color:#FFD966;letter-spacing:-0.2px;">참고 사항</div></div><div style="background:#201B2D;border:1px solid #5D3C86;border-radius:14px;padding:14px 16px;margin:12px 0;box-sizing:border-box;"><div style="display:flex;gap:9px;align-items:flex-start;margin:7px 0;"><div style="min-width:22px;color:#DCC27F;font-weight:900;text-align:right;">•</div><div style="flex:1;font-size:15px;line-height:1.65;color:#E8EDF5;">표기된 수치는 현재 안내 기준의 룬 옵션입니다.</div></div><div style="display:flex;gap:9px;align-items:flex-start;margin:7px 0;"><div style="min-width:22px;color:#DCC27F;font-weight:900;text-align:right;">•</div><div style="flex:1;font-size:15px;line-height:1.65;color:#E8EDF5;">룬 장착 및 변경은 게임 내 대장장이 메뉴를 통해 진행해 주세요.</div></div></div></div></div>
-</body>
+
+<br><br>
+   <!-- End -->
+        
+
+    <!-- Copyright Start -->
+	<div id="footer-placeholder"></div>
+	<script>
+	  fetch("https://borinet-dev.github.io/head/footer.html?ver=" + Date.now())
+	    .then(r => r.text())
+	    .then(html => {
+	      document.getElementById("footer-placeholder").innerHTML = html;
+	    });
+	</script>
+    <!-- Copyright End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://borinet-dev.github.io/css/lib/wow/wow.min.js"></script>
+	<script src="https://borinet-dev.github.io/css/lib/easing/easing.min.js"></script>
+	<script src="https://borinet-dev.github.io/css/lib/waypoints/waypoints.min.js"></script>
+	<script src="https://borinet-dev.github.io/css/lib/owlcarousel/owl.carousel.min.js"></script>
+	<script src="https://borinet-dev.github.io/css/lib/counterup/counterup.min.js"></script>
+	<script src="https://borinet-dev.github.io/css/lib/parallax/parallax.min.js"></script>
+	<script src="https://borinet-dev.github.io/css/lib/isotope/isotope.pkgd.min.js"></script>
+	<script src="https://borinet-dev.github.io/css/lib/lightbox/js/lightbox.min.js"></script>
+
+	<!-- Template Javascript -->
+	<script src="https://borinet-dev.github.io/css/js/main.js"></script>
+    </body>
 </html>
+
